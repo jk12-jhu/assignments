@@ -28,9 +28,17 @@
   background-color: white;
 }
 
-.row {
-  height: 1000px;
+.menu-item {
   background-color: lightgrey;
+  height: 700px;
+  margin-bottom: 20px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.menu-item p {
+  margin-top: 610px;
+  text-align: center;
 }
 
 @media (max-width: 767px) {
@@ -49,9 +57,7 @@
     padding: 15px;
     border-bottom: 1px solid grey;
   }
-  .row {
-    height: 1000px;
-    background-color: lightgrey;
+  .menu-item {
     margin-left: 30px;
     margin-right: 30px;
   }
