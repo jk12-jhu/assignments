@@ -1,6 +1,6 @@
 .navbar-default {
-  background-color: #ccc;
-  border: 1px solid #ccc;
+  background-color: lightgrey;
+  border: 1px solid lightgrey;
   position: relative;
 }
 
@@ -12,8 +12,25 @@
   border-color: black;
 }
 
+.navbar-default .navbar-toggle:active,
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:hover {
+  border-color: white;
+}
+
 .navbar-default .navbar-toggle .icon-bar {
   background-color: black;
+}
+
+.navbar-default .navbar-toggle:active .icon-bar,
+.navbar-default .navbar-toggle:focus .icon-bar,
+.navbar-default .navbar-toggle:hover .icon-bar {
+  background-color: white;
+}
+
+.row {
+  height: 1000px;
+  background-color: lightgrey;
 }
 
 @media (max-width: 767px) {
@@ -24,11 +41,18 @@
     right: 0;
     overflow-y: auto;
     background-color: white;
+    z-index: 1000;
   }
   .navbar-collapse .nav li a {
     color: black;
     display: block;
     padding: 15px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid grey;
+  }
+  .row {
+    height: 1000px;
+    background-color: lightgrey;
+    margin-left: 30px;
+    margin-right: 30px;
   }
 }
