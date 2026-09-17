@@ -6,6 +6,8 @@
 
 .navbar-default .navbar-brand {
   color: black;
+  font-weight: bold;
+  font-size: 22px;
 }
 
 .navbar-default .navbar-toggle {
