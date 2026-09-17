@@ -1,5 +1,5 @@
 .navbar-default {
-  background-color: white;
+  background-color: #ccc;
   border: 1px solid #ccc;
   position: relative;
 }
@@ -9,7 +9,7 @@
 }
 
 .navbar-default .navbar-toggle {
-  border-color: #ccc;
+  border-color: black;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
