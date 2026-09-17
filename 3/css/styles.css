@@ -36,11 +36,21 @@
   margin-bottom: 20px;
   padding: 10px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item h3 {
+  margin-top: 0;
 }
 
 .menu-item p {
-  margin-top: 610px;
+  margin-top: 0;
+}
+
+.menu-item p:last-child {
   text-align: center;
+  margin-top: auto;
 }
 
 @media (max-width: 767px) {
