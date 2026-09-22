@@ -1,19 +1,56 @@
 .navbar-default {
-  background-color: white;
-  border: 1px solid #ccc;
+  background-color: lightgrey;
+  border: 1px solid lightgrey;
   position: relative;
 }
 
 .navbar-default .navbar-brand {
   color: black;
+  font-weight: bold;
+  font-size: 22px;
 }
 
 .navbar-default .navbar-toggle {
-  border-color: #ccc;
+  border-color: black;
+}
+
+.navbar-default .navbar-toggle:active,
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:hover {
+  border-color: white;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
   background-color: black;
+}
+
+.navbar-default .navbar-toggle:active .icon-bar,
+.navbar-default .navbar-toggle:focus .icon-bar,
+.navbar-default .navbar-toggle:hover .icon-bar {
+  background-color: white;
+}
+
+.menu-item {
+  background-color: lightgrey;
+  height: 700px;
+  margin-bottom: 20px;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item h3 {
+  margin-top: 0;
+}
+
+.menu-item p {
+  margin-top: 0;
+}
+
+.menu-item p:last-child {
+  text-align: center;
+  margin-top: auto;
 }
 
 @media (max-width: 767px) {
@@ -24,11 +61,16 @@
     right: 0;
     overflow-y: auto;
     background-color: white;
+    z-index: 1000;
   }
   .navbar-collapse .nav li a {
     color: black;
     display: block;
     padding: 15px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid grey;
+  }
+  .menu-item {
+    margin-left: 30px;
+    margin-right: 30px;
   }
 }
