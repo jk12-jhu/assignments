@@ -14,6 +14,7 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
 var dc = {};
 
 var homeHtmlUrl = "snippets/home-snippet.html";
+var aboutHtmlUrl = "snippets/about-snippet.html";
 var allCategoriesUrl =
   "https://coursera-jhu-default-rtdb.firebaseio.com/categories.json";
 var categoriesTitleHtml = "snippets/categories-title-snippet.html";
@@ -83,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 showLoading("#main-content");
 $ajaxUtils.sendGetRequest(
   allCategoriesUrl,
-  [...], // ***** <---- TODO: STEP 1: Substitute [...] ******
+  buildAndShowHomeHTML,
   true); // Explicitly setting the flag to get JSON from server processed into an object literal
 });
 // *** finish **
@@ -101,7 +102,7 @@ function buildAndShowHomeHTML (categories) {
       // TODO: STEP 2: Here, call chooseRandomCategory, passing it retrieved 'categories'
       // Pay attention to what type of data that function returns vs what the chosenCategoryShortName
       // variable's name implies it expects.
-      // var chosenCategoryShortName = ....
+      var chosenCategoryShortName = chooseRandomCategory(categories).short_name;
 
 
       // TODO: STEP 3: Substitute {{randomCategoryShortName}} in the home html snippet with the
@@ -115,13 +116,13 @@ function buildAndShowHomeHTML (categories) {
       // Hint: you need to surround the chosen category short name with something before inserting
       // it into the home html snippet.
       //
-      // var homeHtmlToInsertIntoMainPage = ....
+      var insertionHTML = insertProperty(homeHtml, "randomCategoryShortName", "'" + chosenCategoryShortName + "'");
 
 
       // TODO: STEP 4: Insert the produced HTML in STEP 3 into the main page
       // Use the existing insertHtml function for that purpose. Look through this code for an example
       // of how to do that.
-      // ....
+      insertHtml("#main-content", insertionHTML);
 
     },
     false); // False here because we are getting just regular HTML from the server, so no need to process JSON.
@@ -135,6 +136,11 @@ function chooseRandomCategory (categories) {
 
   // return category object with that randomArrayIndex
   return categories[randomArrayIndex];
+}
+
+
+function getRandStar (min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 
@@ -154,6 +160,24 @@ dc.loadMenuItems = function (categoryShort) {
   $ajaxUtils.sendGetRequest(
     menuItemsUrl + categoryShort + ".json",
     buildAndShowMenuItemsHTML);
+};
+
+
+// Load the About view
+dc.loadAbout = function () {
+  showLoading("#main-content");
+  $ajaxUtils.sendGetRequest(
+    aboutHtmlUrl,
+    function (aboutHtml) {
+      var stars = getRandStar(1, 5);
+      for (var i = 1; i <= 5; i++) {
+        var iconClass = i <= stars ? "fa fa-star" : "fa fa-star-o";
+        aboutHtml = insertProperty(aboutHtml, "class" + i, iconClass);
+      }
+      aboutHtml = insertProperty(aboutHtml, "starRatingText", stars + "-star rating");
+      insertHtml("#main-content", aboutHtml);
+    },
+    false);
 };
 
 
