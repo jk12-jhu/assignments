@@ -139,6 +139,11 @@ function chooseRandomCategory (categories) {
 }
 
 
+function getRandStar (min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
 // Load the menu categories view
 dc.loadMenuCategories = function () {
   showLoading("#main-content");
@@ -164,6 +169,12 @@ dc.loadAbout = function () {
   $ajaxUtils.sendGetRequest(
     aboutHtmlUrl,
     function (aboutHtml) {
+      var stars = getRandStar(1, 5);
+      for (var i = 1; i <= 5; i++) {
+        var iconClass = i <= stars ? "fa fa-star" : "fa fa-star-o";
+        aboutHtml = insertProperty(aboutHtml, "class" + i, iconClass);
+      }
+      aboutHtml = insertProperty(aboutHtml, "starRatingText", stars + "-star rating");
       insertHtml("#main-content", aboutHtml);
     },
     false);
