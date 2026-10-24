@@ -16,3 +16,8 @@ li > button {
 button > span {
   color: green;
 }
+
+.qty-input {
+  width: 100%;
+  text-align: center;
+}

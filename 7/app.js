@@ -5,15 +5,22 @@
 
     .service('ShoppingListCheckOffService', ShoppingListCheckOffService)
     .controller('ToBuyController', ['$scope', 'ShoppingListCheckOffService', ToBuyController])
-    .controller('AlreadyBoughtController', ['$scope', 'ShoppingListCheckOffService', AlreadyBoughtController]);
+    .controller('AlreadyBoughtController', ['$scope', 'ShoppingListCheckOffService', AlreadyBoughtController])
+    .filter('priceFormat', priceFormat);
+
+  function priceFormat() {
+    return function(amount) {
+      return '$$$' + amount.toFixed(2);
+    };
+  }
 
   function ShoppingListCheckOffService() {
     var todo = [
-      { name: 'Buy 10 cookies' },
-      { name: 'Buy 20 apples' },
-      { name: 'Buy 5 bananas' },
-      { name: 'Buy 1 loaf of bread' },
-      { name: 'Buy 2 liters of milk' }
+      { name: 'cookies', pricePerItem: 8.99, quantity: 10 },
+      { name: 'apples', pricePerItem: 0.60, quantity: 20 },
+      { name: 'bananas', pricePerItem: 0.25, quantity: 5 },
+      { name: 'loaf of bread', pricePerItem: 4.99, quantity: 1 },
+      { name: 'liters of milk', pricePerItem: 2.99, quantity: 2 }
     ];
 
     var bought = [];
@@ -25,7 +32,12 @@
         var index = todo.indexOf(item);
         if (index !== -1) {
           todo.splice(index, 1);
-          bought.push({ name: item.name });
+          var total = item.quantity * item.pricePerItem;
+          bought.push({
+            name: item.name,
+            quantity: item.quantity,
+            total: total
+          });
         }
       }
     };
