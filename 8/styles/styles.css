@@ -50,3 +50,17 @@ input[type="text"] {
     transform: rotate(360deg);
   }
 }
+
+li {
+  margin-bottom: 7px;
+  font-size: 1.2em;
+}
+
+li > button {
+  margin-left: 6px;
+}
+
+ul {
+  clear: both;
+  margin-top: 20px;
+}
