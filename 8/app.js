@@ -7,6 +7,7 @@
     .controller('NarrowItDownController', NarrowItDownController)
     .directive('foundItems', foundItems);
 
+  MenuSearchService.$inject = ['$http'];
   function MenuSearchService($http) {
     var service = this;
 
@@ -25,10 +26,12 @@
           }
         }
         var matchedItems = [];
-        var term = searchTerm.toLowerCase();
-        for (var j = 0; j < allItems.length; j++) {
-          if (allItems[j].name.toLowerCase().indexOf(term) !== -1) {
-            matchedItems.push(allItems[j]);
+        if (searchTerm !== '') {
+          var term = searchTerm.toLowerCase();
+          for (var j = 0; j < allItems.length; j++) {
+            if (allItems[j].name.toLowerCase().indexOf(term) !== -1) {
+              matchedItems.push(allItems[j]);
+            }
           }
         }
         return matchedItems;
@@ -36,12 +39,9 @@
     };
   }
 
+  NarrowItDownController.$inject = ['MenuSearchService'];
   function NarrowItDownController(MenuSearchService) {
     var vm = this;
-
-    MenuSearchService.getMatchedMenuItems('').then(function (items) {
-      vm.found = items;
-    });
 
     vm.narrowItDown = narrowItDown;
 

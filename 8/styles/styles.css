@@ -64,3 +64,29 @@ ul {
   clear: both;
   margin-top: 20px;
 }
+
+.nothing-found {
+  clear: both;
+  margin-top: 20px;
+  font-weight: bold;
+  color: red;
+}
+
+li {
+  padding: 8px 0;
+  overflow: auto;
+}
+
+.item-name {
+  display: block;
+  font-weight: bold;
+}
+
+.item-description {
+  display: block;
+  color: #666;
+}
+
+.btn-remove {
+  float: right;
+}
