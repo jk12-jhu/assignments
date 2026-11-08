@@ -6,19 +6,21 @@
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
   </head>
-<body>
-   <div class="container">
+<body ng-app="NarrowItDownApp">
+   <div class="container" ng-controller="NarrowItDownController as narrowItDown">
     <h1>Narrow Down Your Chinese Menu Choice</h1>
 
     <div class="form-group">
-      <input type="text" placeholder="search term" class="form-control">
+      <input type="text" placeholder="search term" class="form-control" ng-model="narrowItDown.searchTerm">
     </div>
     <div class="form-group narrow-button">
-      <button class="btn btn-primary">Narrow It Down For Me!</button>
+      <button class="btn btn-primary" ng-click="narrowItDown.narrowItDown()">Narrow It Down For Me!</button>
     </div>
 
-    <found-items found-items="...." on-remove="...."></found-items>
+    <found-items found-items="narrowItDown.foundItems" on-remove="narrowItDown.removeItem(item, index)"></found-items>
   </div>
 
+  <script src="angular.min.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
